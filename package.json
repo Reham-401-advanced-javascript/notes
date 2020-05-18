@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Reham-401-advanced-javascript/notes#readme",
   "dependencies": {
+    "eslint": "^7.0.0",
     "is-url": "^1.2.4",
     "minimist": "^1.2.5"
   }
