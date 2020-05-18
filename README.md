@@ -4,7 +4,7 @@ Author: Reham AL-Sobh
 
 ## Links and Resources
 
-- [submission PR](https://github.com/Reham-401-advanced-javascript/Lab-00/pull/1)
+- [submission PR](https://github.com/Reham-401-advanced-javascript/notes/pull/2)
 
 
 ## Setup
