@@ -10,7 +10,9 @@ mongoose.connect(mongo, {
   useUnifiedTopology: true,
 });
 
-const addNewNote = new Input();
-// console.log('input note',addNewNote);
-Notes.prototype.execute(addNewNote);
+const noteObj = new Input();
+// console.log('input note',Notes);
+const addNewNote=new Notes(noteObj);
+addNewNote.execute(noteObj);
+
 
