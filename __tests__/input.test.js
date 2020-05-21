@@ -7,7 +7,7 @@ const Input = require('../lib/input.js');
 jest.mock('minimist');
 minimist.mockImplementation(() => {
   return {
-    action: 'add'||'a',
+    action: 'add'||'a'||'delete'||'list',
     payload: 'note',
        
   };
@@ -28,6 +28,10 @@ describe('INPUT MODULE', () => {
       expect(addNewNote.MethodValidator(addNewNote.method)).toEqual(addNewNote.method);
       expect(addNewNote.MethodValidator('add')).toEqual('add');
       expect(addNewNote.MethodValidator('a')).toEqual('a');
+      expect(addNewNote.MethodValidator('list')).toEqual('list');
+      expect(addNewNote.MethodValidator('delete')).toEqual('delete');
+
+
 
     });
   });
