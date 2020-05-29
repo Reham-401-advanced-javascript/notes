@@ -14,5 +14,3 @@ const noteObj = new Input();
 // console.log('input note',Notes);
 const addNewNote=new Notes(noteObj);
 addNewNote.execute(noteObj);
-
-
