@@ -1,19 +1,32 @@
 'use strict';
-const NOTES = require('../lib/notes.js');
+require('@code-fellows/supergoose');
 
-
+const Note = require('../model/notes-collection.js');
 jest.spyOn(global.console, 'log');
 
-describe('execute()', () => {
-  it('It will not  log to the console if there is error in action or payload or there empty command given ', ()=> {
-     
-    expect(console.log).not.toHaveBeenCalled();
+describe('note model()', () => {
+
+  it('create() a new note', () => {
+    // const option=new Note();
+    const myNote = { payload: 'test', category: 'school' };
+    return Note.create(myNote).then((record) => {
+      Object.keys(myNote).forEach((key) => {
+        expect(record[key]).toEqual(myNote[key]);
+      });
+    });
+
   });
-  
-  it('add  note  when call execute()  with valid action and payload', ()=> {
-    const newNote = {action:'a' , payload: 'This is a really cool thing'};
-    const note = new NOTES(newNote);
-    note.execute(newNote.action,newNote.payload);
-    expect(console.log).toHaveBeenCalled();
+  it('can get(category) ', () => {
+    let obj = { payload: 'test', category: 'school' };
+    return Note.get(obj.category)
+      .then(item => {
+        Object.keys(obj).forEach(key => {
+          expect(item[0][key]).toEqual(obj[key]);
+        });
+      });
+
+
   });
-});
+ 
+ 
+}); 

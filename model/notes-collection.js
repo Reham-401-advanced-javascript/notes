@@ -5,6 +5,7 @@ const SchemaNote=require('../model/schema-note.js');
 
 class NoteClass {
   constructor() {}
+
   async create(note) {
     let myNote = {
       payload: note.payload,
@@ -15,21 +16,29 @@ class NoteClass {
     const saved = await newNote.save();
     console.log(`Adding Note: ${note.payload}`);
     console.log('note saved', saved);
-    mongoose.disconnect();
+    // mongoose.disconnect();
     return saved ;
     
    
   }
   async get(note) {
     let allNotes;
-    console.log('zzzzzz',note.category);
+    // console.log('zzzzzz',note.category);
     if (note.category===undefined){
       allNotes = await SchemaNote.find({});
-      console.log('all noteeeeeeees: ', allNotes);
-    }else {
+      for(let i = 0; i<allNotes.length; i++){
+        console.log(
+          `          ${allNotes[i].payload}
+          Category: ${allNotes[i].category}    ID: ${allNotes[i]._id}
+          ----------------------------------------`);
+      }    }else {
       allNotes = await SchemaNote.find({category: note.category});
-      console.log('all notes: ', allNotes);
-
+      for(let i = 0; i<allNotes.length; i++){
+        console.log(
+          `          ${allNotes[i].payload}
+          Category: ${allNotes[i].category}    ID: ${allNotes[i]._id}
+          ----------------------------------------`);
+      }
     }
     mongoose.disconnect();
     return allNotes;
@@ -37,16 +46,20 @@ class NoteClass {
   }
   
   async update(note) {
+
     let myNote = {
       _id:note.id,
-      payload: note.payload,
-      new:true ,
+      payload: note.edit,
     }; 
-    let updateResult= SchemaNote.findByIdAndUpdate(myNote);
-    console.log('updated',updateResult);
+    // console.log('bbbbbb',note);
+    // console.log('oooooo',myNote);
+
+    let updateResult= SchemaNote.findByIdAndUpdate(myNote._id , myNote,{new:true});
+    console.log('updated',updateResult._update);
     mongoose.disconnect(); 
     return updateResult;
   }
+
   async  delete(note) {
     let deleteNote= await SchemaNote.deleteOne({_id:note.id});
     if(note.id){
