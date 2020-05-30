@@ -24,15 +24,17 @@ class NoteClass {
   async get(note) {
     let allNotes;
     // console.log('zzzzzz',note.category);
-    if (note.category===undefined){
+    if (note.list===true){
       allNotes = await SchemaNote.find({});
       for(let i = 0; i<allNotes.length; i++){
         console.log(
           `          ${allNotes[i].payload}
           Category: ${allNotes[i].category}    ID: ${allNotes[i]._id}
           ----------------------------------------`);
-      }    }else {
-      allNotes = await SchemaNote.find({category: note.category});
+      }
+    }else {
+      console.log('note inside get',note);
+      allNotes = await SchemaNote.find({category: note.list});
       for(let i = 0; i<allNotes.length; i++){
         console.log(
           `          ${allNotes[i].payload}
@@ -54,7 +56,7 @@ class NoteClass {
     // console.log('bbbbbb',note);
     // console.log('oooooo',myNote);
 
-    let updateResult= SchemaNote.findByIdAndUpdate(myNote._id , myNote,{new:true});
+    let updateResult= SchemaNote.findOneAndUpdate(myNote._id , myNote,{new:true});
     console.log('updated',updateResult._update);
     mongoose.disconnect(); 
     return updateResult;

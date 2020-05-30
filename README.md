@@ -27,7 +27,7 @@ MONGODB_URI - URL to the running mongo instance/db
     - e.g. `node index.js --list`
 
  * all note in specifice categoery :
-    - e.g. `node index.js --list --category 'category'`
+    - e.g. `node index.js --list 'category'`
 
  3-  Update note :
     - e.g. `node index.js --update 'valid id' --edit 'updated note' `
