@@ -42,7 +42,7 @@ class NoteClass {
           ----------------------------------------`);
       }
     }
-    mongoose.disconnect();
+    // mongoose.disconnect();
     return allNotes;
     
   }

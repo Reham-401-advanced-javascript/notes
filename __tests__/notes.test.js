@@ -17,13 +17,14 @@ describe('note model()', () => {
 
   });
   it('can get(category) ', () => {
-    let obj = { payload: 'test', category: 'school' };
-    return Note.get(obj.category)
-      .then(item => {
-        Object.keys(obj).forEach(key => {
-          expect(item[0][key]).toEqual(obj[key]);
-        });
+    let obj = { payload: 'test',list: 'school'};
+    return Note.get(obj).then(item => {
+      console.log('item inside get test',item);
+      Object.keys(item[0]).forEach(key => {
+        console.log('obj inside get test',obj);
+        expect(item[key]).toEqual(obj[key]);
       });
+    });
 
 
   });
